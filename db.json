@@ -1,0 +1,197 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@griyanet.com",
+      "name": "Admin User",
+      "role": "admin",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "lastLogin": "2023-06-01T12:30:45.000Z",
+      "isActive": true,
+      "password": "admin123"
+    },
+    {
+      "id": "2",
+      "username": "cs_user",
+      "email": "cs@griyanet.com",
+      "name": "Customer Service",
+      "role": "cs",
+      "avatar": "https://i.pravatar.cc/150?img=2",
+      "createdAt": "2023-01-15T00:00:00.000Z",
+      "lastLogin": "2023-06-02T09:15:30.000Z",
+      "isActive": true,
+      "password": "cs123"
+    },
+    {
+      "id": "3",
+      "username": "noc_user",
+      "email": "noc@griyanet.com",
+      "name": "Network Operations",
+      "role": "noc",
+      "avatar": "https://i.pravatar.cc/150?img=3",
+      "createdAt": "2023-02-01T00:00:00.000Z",
+      "lastLogin": "2023-06-03T14:45:20.000Z",
+      "isActive": true,
+      "password": "noc123"
+    }
+  ],
+  "customers": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "081234567890",
+      "address": "Jl. Merdeka No. 123",
+      "city": "Jakarta",
+      "postalCode": "12345",
+      "registrationDate": "2023-03-15T00:00:00.000Z",
+      "status": "active",
+      "serviceType": "Fiber Optic",
+      "serviceDetails": {
+        "packageName": "Home Basic",
+        "bandwidth": "50 Mbps",
+        "monthlyFee": 350000,
+        "installationDate": "2023-03-20T00:00:00.000Z"
+      },
+      "notes": "Customer prefers evening service calls"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "phone": "087654321098",
+      "address": "Jl. Sudirman No. 456",
+      "city": "Bandung",
+      "postalCode": "40115",
+      "registrationDate": "2023-04-10T00:00:00.000Z",
+      "status": "active",
+      "serviceType": "Wireless",
+      "serviceDetails": {
+        "packageName": "Business Pro",
+        "bandwidth": "100 Mbps",
+        "monthlyFee": 750000,
+        "installationDate": "2023-04-15T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Ahmad Rizki",
+      "email": "ahmad.rizki@example.com",
+      "phone": "089876543210",
+      "address": "Jl. Gatot Subroto No. 789",
+      "city": "Surabaya",
+      "postalCode": "60234",
+      "registrationDate": "2023-05-05T00:00:00.000Z",
+      "status": "pending",
+      "serviceType": "Fiber Optic",
+      "serviceDetails": {
+        "packageName": "Home Premium",
+        "bandwidth": "100 Mbps",
+        "monthlyFee": 500000,
+        "installationDate": "2023-05-12T00:00:00.000Z"
+      },
+      "notes": "Installation pending due to building access issues"
+    }
+  ],
+  "tickets": [
+    {
+      "id": "1",
+      "title": "Internet Connection Down",
+      "description": "Customer reports complete loss of internet connectivity since this morning.",
+      "customerId": "1",
+      "customerName": "John Doe",
+      "createdBy": "2",
+      "assignedTo": "3",
+      "createdAt": "2023-06-01T08:30:00.000Z",
+      "updatedAt": "2023-06-01T10:15:00.000Z",
+      "status": "in_progress",
+      "priority": "high",
+      "category": "connection",
+      "statusHistory": [
+        {
+          "id": "1-1",
+          "status": "open",
+          "timestamp": "2023-06-01T08:30:00.000Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "notes": "Ticket created"
+        },
+        {
+          "id": "1-2",
+          "status": "in_progress",
+          "timestamp": "2023-06-01T10:15:00.000Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "notes": "Investigating the issue"
+        }
+      ],
+      "notes": "Customer tried restarting the router multiple times"
+    },
+    {
+      "id": "2",
+      "title": "Slow Internet Speed",
+      "description": "Customer complains about significantly slower internet speeds than usual.",
+      "customerId": "2",
+      "customerName": "Jane Smith",
+      "createdBy": "2",
+      "assignedTo": "3",
+      "createdAt": "2023-06-02T14:45:00.000Z",
+      "updatedAt": "2023-06-03T09:20:00.000Z",
+      "status": "resolved",
+      "priority": "medium",
+      "category": "speed",
+      "statusHistory": [
+        {
+          "id": "2-1",
+          "status": "open",
+          "timestamp": "2023-06-02T14:45:00.000Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "notes": "Ticket created"
+        },
+        {
+          "id": "2-2",
+          "status": "in_progress",
+          "timestamp": "2023-06-02T16:30:00.000Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "notes": "Running diagnostics"
+        },
+        {
+          "id": "2-3",
+          "status": "resolved",
+          "timestamp": "2023-06-03T09:20:00.000Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "notes": "Issue resolved - network congestion fixed"
+        }
+      ],
+      "resolution": "Fixed network congestion issue affecting the area"
+    },
+    {
+      "id": "3",
+      "title": "Billing Inquiry",
+      "description": "Customer has questions about recent charges on their bill.",
+      "customerId": "3",
+      "customerName": "Ahmad Rizki",
+      "createdBy": "2",
+      "createdAt": "2023-06-03T11:15:00.000Z",
+      "updatedAt": "2023-06-03T11:15:00.000Z",
+      "status": "open",
+      "priority": "low",
+      "category": "billing",
+      "statusHistory": [
+        {
+          "id": "3-1",
+          "status": "open",
+          "timestamp": "2023-06-03T11:15:00.000Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "notes": "Ticket created"
+        }
+      ]
+    }
+  ]
+}

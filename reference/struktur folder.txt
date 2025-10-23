@@ -1,59 +1,63 @@
-src/
-├── assets/                # Gambar, ikon, dan file statis lainnya
-├── components/            # Komponen reusable (button, form, modal, table, dll)
-│   ├── Button/
-│   │   └── Button.jsx
-│   ├── Input/
-│   │   └── Input.jsx
-│   ├── Table/
-│   │   └── Table.jsx
-│   └── index.js
-│
-├── pages/                 # Halaman utama aplikasi
-│   ├── Login/
-│   │   └── LoginPage.jsx
-│   ├── Customers/
-│   │   ├── CustomersList.jsx
-│   │   ├── CustomerForm.jsx
-│   │   └── CustomerDetail.jsx
-│   ├── Tickets/
-│   │   ├── TicketList.jsx
-│   │   ├── TicketDetail.jsx
-│   │   └── TicketForm.jsx
-│   └── Dashboard/
-│       └── DashboardPage.jsx
-│
-├── routes/                # Routing aplikasi
-│   └── AppRouter.jsx
-│
-├── services/              # Koneksi data, API, atau Supabase
-│   ├── customerService.js
-│   ├── ticketService.js
-│   ├── authService.js
-│   └── supabaseClient.js
-│
-├── hooks/                 # Custom hooks (misal: useAuth, useFetch, useForm)
-│   ├── useAuth.js
-│   ├── useFetch.js
-│   └── useForm.js
-│
-├── context/               # Global context (misal: AuthContext)
-│   └── AuthContext.jsx
-│
-├── utils/                 # Helper functions, constants, formatters
-│   ├── constants.js
-│   ├── formatDate.js
-│   └── validators.js
-│
-├── data/                  # Jika pakai JSON lokal
-│   ├── customers.json
-│   ├── tickets.json
-│   └── ticket_logs.json
-│
-├── styles/                # File CSS global atau Tailwind config
-│   ├── globals.css
-│   └── tailwind.css
-│
-├── App.jsx                # Entry utama React
-├── main.jsx               # File bootstrap React DOM
-└── index.html
+ticket-management/
+├── db.json
+├── tsconfig.json
+├── vite.config.ts
+├── package.json
+
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   ├── Table.tsx
+│   │   └── index.ts
+│   │
+│   ├── pages/
+│   │   ├── Login/
+│   │   │   └── LoginPage.tsx
+│   │   ├── Dashboard/
+│   │   │   └── DashboardPage.tsx
+│   │   ├── Customers/
+│   │   │   ├── CustomersList.tsx
+│   │   │   ├── CustomerForm.tsx
+│   │   │   └── CustomerDetail.tsx
+│   │   └── Tickets/
+│   │       ├── TicketList.tsx
+│   │       ├── TicketForm.tsx
+│   │       └── TicketDetail.tsx
+│   │
+│   ├── routes/
+│   │   └── AppRouter.tsx
+│   │
+│   ├── services/
+│   │   ├── api.ts
+│   │   ├── customerService.ts
+│   │   ├── ticketService.ts
+│   │   └── authService.ts
+│   │
+│   ├── hooks/
+│   │   ├── useAuth.ts
+│   │   ├── useFetch.ts
+│   │   └── useForm.ts
+│   │
+│   ├── context/
+│   │   └── AuthContext.tsx
+│   │
+│   ├── types/                # <- Tambahan penting untuk TypeScript
+│   │   ├── customer.d.ts
+│   │   ├── ticket.d.ts
+│   │   ├── user.d.ts
+│   │   └── index.d.ts
+│   │
+│   ├── utils/
+│   │   ├── formatDate.ts
+│   │   ├── validators.ts
+│   │   └── constants.ts
+│   │
+│   ├── styles/
+│   │   ├── globals.css
+│   │   └── tailwind.css
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.html
