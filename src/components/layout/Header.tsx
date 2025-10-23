@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from '../index';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * Header component props
@@ -15,6 +17,14 @@ interface HeaderProps {
  * @param title - Page title
  */
 const Header: React.FC<HeaderProps> = ({ onMenuClick, title = 'Dashboard' }) => {
+  const navigate = useNavigate();
+  const { logout, user } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-background px-4 lg:px-6">
       {/* Left section with menu button and title */}
@@ -89,6 +99,13 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, title = 'Dashboard' }) => 
             />
           </svg>
         </Button>
+
+        {/* Logout button */}
+        {user && (
+          <Button variant="outline" size="sm" onClick={handleLogout} aria-label="Logout">
+            Logout
+          </Button>
+        )}
       </div>
     </header>
   );

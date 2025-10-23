@@ -51,36 +51,30 @@ const Customers: React.FC = () => {
     navigate(`/customers/${customer.id}`);
   };
 
-  const columns: TableProps<Customer>["columns"] = = [
+  const columns = [
     {
       header: 'ID',
-      accessor: 'id',
-      cell: (customer: Customer) => <span className="font-medium">{customer.id}</span>
+      accessor: 'id' as const,
     },
     {
       header: 'Nama',
-      accessor: 'name',
-      cell: (customer: Customer) => <span className="font-medium">{customer.name}</span>
+      accessor: 'name' as const,
     },
     {
       header: 'Email',
-      accessor: 'email',
-      cell: (customer: Customer) => <span>{customer.email}</span>
+      accessor: 'email' as const,
     },
     {
       header: 'Telepon',
-      accessor: 'phone',
-      cell: (customer: Customer) => <span>{customer.phone}</span>
+      accessor: 'phone' as const,
     },
     {
       header: 'Alamat',
-      accessor: 'address',
-      cell: (customer: Customer) => <span className="truncate max-w-xs">{customer.address}</span>
+      accessor: (customer: Customer) => <span className="truncate max-w-xs">{customer.address}</span>,
     },
     {
       header: 'Status',
-      accessor: 'status',
-      cell: (customer: Customer) => (
+      accessor: (customer: Customer) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             customer.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
@@ -92,8 +86,7 @@ const Customers: React.FC = () => {
     },
     {
       header: 'Aksi',
-      accessor: 'actions',
-      cell: (customer: Customer) => (
+      accessor: (customer: Customer) => (
         <div className="flex space-x-2">
           <Link 
             to={`/customers/${customer.id}`}

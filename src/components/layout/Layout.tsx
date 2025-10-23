@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import { Outlet } from 'react-router-dom';
 
 /**
  * Layout component props
  */
 interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title?: string;
   userRole?: string;
 }
@@ -39,7 +40,8 @@ const Layout: React.FC<LayoutProps> = ({ children, title, userRole = 'admin' }) 
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
-          {children}
+          {/* Render nested route components */}
+          <Outlet />
         </main>
       </div>
     </div>
