@@ -63,8 +63,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (user) {
         // Simulate password check (in a real app, this would be done securely on the server)
-        // For demo, we'll just check if password is 'password'
-        if (credentials.password === 'password') {
+        // For demo, we'll compare with the stored user password from db.json
+        if (credentials.password === user.password) {
           // Update user's last login
           const updatedUser = {
             ...user,
@@ -95,6 +95,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             role: user.role
           });
           
+          setError(null);
           setIsLoading(false);
           return true;
         }

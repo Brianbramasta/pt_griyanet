@@ -29,7 +29,9 @@ const Login: React.FC = () => {
     setIsLoading(true);
 
     try {
+      console.log('Login attempt with:', credentials);
       const success = await login(credentials);
+      console.log(success)
       if (success) {
         navigate('/');
       } else {
