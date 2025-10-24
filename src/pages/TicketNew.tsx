@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { Button, Input } from '../components';
 import { ticketService } from '../services/ticketService';
@@ -35,6 +35,7 @@ const TicketNew: React.FC = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       setIsLoadingCustomers(true);
+      console.log(isLoadingCustomers)
       setError('');
       try {
         const data = await customerService.getAll();
@@ -75,7 +76,7 @@ const TicketNew: React.FC = () => {
   const priorities: TicketPriority[] = ['low', 'medium', 'high', 'critical'];
   const categories: TicketCategory[] = ['connection', 'speed', 'billing', 'hardware', 'other'];
 
-  const isReady = useMemo(() => !isLoadingCustomers, [isLoadingCustomers]);
+  // const isReady = useMemo(() => !isLoadingCustomers, [isLoadingCustomers]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

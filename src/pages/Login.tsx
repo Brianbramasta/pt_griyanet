@@ -21,7 +21,7 @@ const Login: React.FC = () => {
     }));
   };
 
-  const { login, error: authError, isLoading: authLoading } = useAuth();
+  const { login, error: authError } = useAuth();
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

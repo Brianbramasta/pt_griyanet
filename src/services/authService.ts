@@ -1,7 +1,7 @@
 import { api } from './api';
 import type { AuthUser, LoginCredentials } from '../types/user';
 
-const ENDPOINT = '/auth';
+// const ENDPOINT = '/auth';
 
 /**
  * Service for handling authentication-related API operations
@@ -129,6 +129,7 @@ export const authService = {
   requestPasswordReset: async (email: string): Promise<{ message: string }> => {
     // In a real app, this would send a reset link to the user's email
     // For demo, we'll just return a success message
+    console.log(email)
     return { message: 'Link reset password telah dikirim ke email Anda' };
   },
 
@@ -140,6 +141,8 @@ export const authService = {
    */
   resetPassword: async (token: string, newPassword: string): Promise<{ message: string }> => {
     // In a real app, this would verify the token and update the password
+    console.log(token)
+    console.log(newPassword)
     // For demo, we'll just return a success message
     return { message: 'Password berhasil diubah' };
   }

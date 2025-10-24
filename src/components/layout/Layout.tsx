@@ -19,7 +19,7 @@ interface LayoutProps {
  * @param title - Page title to display in header
  * @param userRole - Current user's role
  */
-const Layout: React.FC<LayoutProps> = ({ children, title, userRole }) => {
+const Layout: React.FC<LayoutProps> = ({  title, userRole }) => {
   // State for mobile sidebar visibility
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
