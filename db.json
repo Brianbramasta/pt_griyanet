@@ -32,7 +32,7 @@
       "role": "noc",
       "avatar": "https://i.pravatar.cc/150?img=3",
       "createdAt": "2023-02-01T00:00:00.000Z",
-      "lastLogin": "2023-06-03T14:45:20.000Z",
+      "lastLogin": "2025-10-24T00:00:36.734Z",
       "isActive": true,
       "password": "noc123"
     }
@@ -93,6 +93,25 @@
         "installationDate": "2023-05-12T00:00:00.000Z"
       },
       "notes": "Installation pending due to building access issues"
+    },
+    {
+      "name": "Brian Bramasta1",
+      "email": "Brianaldybramasta@gmail.com",
+      "phone": "0895397115216",
+      "address": "surabaya",
+      "city": "Kota Surabaya",
+      "postalCode": "60292",
+      "registrationDate": "2025-10-23T23:37:37.742Z",
+      "status": "active",
+      "serviceType": "Fiber Optic",
+      "serviceDetails": {
+        "packageName": "oke",
+        "bandwidth": "50 mps",
+        "monthlyFee": 35000,
+        "installationDate": "2025-10-24"
+      },
+      "notes": "test",
+      "id": "a110"
     }
   ],
   "tickets": [
@@ -106,7 +125,7 @@
       "assignedTo": "3",
       "createdAt": "2023-06-01T08:30:00.000Z",
       "updatedAt": "2023-06-01T10:15:00.000Z",
-      "status": "in_progress",
+      "status": "resolved",
       "priority": "high",
       "category": "connection",
       "statusHistory": [
@@ -125,6 +144,13 @@
           "userId": "3",
           "userName": "Network Operations",
           "notes": "Investigating the issue"
+        },
+        {
+          "status": "resolved",
+          "timestamp": "2025-10-24T00:01:53.231Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "comment": "proses selesai"
         }
       ],
       "notes": "Customer tried restarting the router multiple times"
@@ -190,6 +216,60 @@
           "userId": "2",
           "userName": "Customer Service",
           "notes": "Ticket created"
+        }
+      ]
+    },
+    {
+      "id": "2f57",
+      "title": "test ticket",
+      "description": "test",
+      "customerId": "1",
+      "customerName": "John Doe",
+      "createdBy": "2",
+      "assignedTo": "2",
+      "status": "in_progress",
+      "priority": "medium",
+      "category": "hardware",
+      "attachments": [],
+      "notes": "test",
+      "createdAt": "2025-10-23T23:59:08.116Z",
+      "updatedAt": "2025-10-23T23:59:08.116Z",
+      "statusHistory": [
+        {
+          "id": "c0ecf811-ec8a-4fa9-a4e4-4a64b482111a",
+          "status": "open",
+          "timestamp": "2025-10-23T23:59:08.116Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "notes": "Tiket dibuat"
+        },
+        {
+          "status": "in_progress",
+          "timestamp": "2025-10-23T23:59:18.518Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "comment": ""
+        },
+        {
+          "status": "in_progress",
+          "timestamp": "2025-10-23T23:59:19.746Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "comment": ""
+        },
+        {
+          "status": "open",
+          "timestamp": "2025-10-23T23:59:52.763Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "comment": "halo"
+        },
+        {
+          "status": "in_progress",
+          "timestamp": "2025-10-24T00:01:21.828Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "comment": "oke sedang di kerjakan"
         }
       ]
     }

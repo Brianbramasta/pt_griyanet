@@ -7,10 +7,14 @@ import { useAuth } from '../context/AuthContext';
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 const Customers = React.lazy(() => import('../pages/Customers'));
 const CustomerDetail = React.lazy(() => import('../pages/CustomerDetail'));
+const CustomerNew = React.lazy(() => import('../pages/CustomerNew'));
+const CustomerEdit = React.lazy(() => import('../pages/CustomerEdit'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
+const TicketNew = React.lazy(() => import('../pages/TicketNew'));
 const TicketDetail = React.lazy(() => import('../pages/TicketDetail'));
 const Users = React.lazy(() => import('../pages/Users'));
 const UserDetail = React.lazy(() => import('../pages/UserDetail'));
+const AdminReports = React.lazy(() => import('../pages/AdminReports'));
 const Login = React.lazy(() => import('../pages/Login'));
 const NotFound = React.lazy(() => import('../pages/NotFound'));
 
@@ -58,11 +62,15 @@ const AppRoutes: React.FC = () => {
         >
           <Route index element={<Dashboard />} />
           <Route path="customers" element={<Customers />} />
+          <Route path="customers/new" element={<CustomerNew />} />
+          <Route path="customers/edit/:id" element={<CustomerEdit />} />
           <Route path="customers/:id" element={<CustomerDetail />} />
           <Route path="tickets" element={<Tickets />} />
+          <Route path="tickets/new" element={<TicketNew />} />
           <Route path="tickets/:id" element={<TicketDetail />} />
           <Route path="users" element={<Users />} />
           <Route path="users/:id" element={<UserDetail />} />
+          <Route path="admin/reports" element={<AdminReports />} />
         </Route>
         
         {/* Not found route */}

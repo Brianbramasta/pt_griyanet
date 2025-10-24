@@ -1,17 +1,17 @@
 /**
  * Ticket status types
  */
-export type TicketStatus = 'open' | 'in_progress' | 'resolved' | 'closed' | 'cancelled';
+export type TicketStatus = 'open' | 'in_progress' | 'resolved' | 'closed' | 'cancelled' | 'all';
 
 /**
  * Ticket priority types
  */
-export type TicketPriority = 'low' | 'medium' | 'high' | 'critical';
+export type TicketPriority = 'low' | 'medium' | 'high' | 'critical' | 'all';
 
 /**
  * Ticket category types
  */
-export type TicketCategory = 'connection' | 'speed' | 'billing' | 'hardware' | 'other';
+export type TicketCategory = 'connection' | 'speed' | 'billing' | 'hardware' | 'other' | 'all';
 
 /**
  * Ticket status history entry

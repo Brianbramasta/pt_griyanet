@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import { Outlet } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 /**
  * Layout component props
@@ -18,9 +19,12 @@ interface LayoutProps {
  * @param title - Page title to display in header
  * @param userRole - Current user's role
  */
-const Layout: React.FC<LayoutProps> = ({ children, title, userRole = 'admin' }) => {
+const Layout: React.FC<LayoutProps> = ({ children, title, userRole }) => {
   // State for mobile sidebar visibility
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const { user } = useAuth();
+  const effectiveRole = user?.role ?? userRole ?? 'admin';
 
   // Toggle sidebar visibility
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -31,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title, userRole = 'admin' }) 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
       {/* Sidebar component */}
-      <Sidebar userRole={userRole} isOpen={sidebarOpen} onClose={closeSidebar} />
+      <Sidebar userRole={effectiveRole} isOpen={sidebarOpen} onClose={closeSidebar} />
 
       {/* Main content area */}
       <div className="flex w-full flex-1 flex-col lg:pl-64">
