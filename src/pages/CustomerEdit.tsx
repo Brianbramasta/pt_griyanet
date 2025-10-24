@@ -69,8 +69,11 @@ const CustomerEdit: React.FC = () => {
       setForm(prev => ({
         ...prev,
         serviceDetails: {
-          ...prev.serviceDetails,
-          [key]: key === 'monthlyFee' ? Number(value) : value,
+          packageName: prev.serviceDetails?.packageName ?? "",
+          bandwidth: prev.serviceDetails?.bandwidth ?? "",
+          monthlyFee: prev.serviceDetails?.monthlyFee ?? 0,
+          installationDate: prev.serviceDetails?.installationDate ?? "",
+          [key]: key === 'monthlyFee' ? Number(value) : value ,
         },
       }));
     } else {

@@ -52,17 +52,17 @@ const Tickets: React.FC = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters(prev => ({ ...prev, search: e.target.value }));
   };
-
+  type TicketStatus = 'open' | 'in_progress' | 'resolved' | 'closed' | 'cancelled' | 'all';
   const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters(prev => ({ ...prev, status: e.target.value }));
+    setFilters(prev => ({ ...prev, status: e.target.value as TicketStatus }));
   };
-
+  type TicketPriority = 'low' | 'medium' | 'high' | 'critical' | 'all';
   const handlePriorityFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters(prev => ({ ...prev, priority: e.target.value }));
+    setFilters(prev => ({ ...prev, priority: e.target.value as TicketPriority }));
   };
-
+  type TicketCategory = 'connection' | 'speed' | 'billing' | 'hardware' | 'other' | 'all';
   const handleCategoryFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters(prev => ({ ...prev, category: e.target.value }));
+    setFilters(prev => ({ ...prev, category: e.target.value as TicketCategory }));
   };
 
   const handleRowClick = (ticket: Ticket) => {
@@ -72,27 +72,27 @@ const Tickets: React.FC = () => {
   const columns = [
     {
       header: 'ID',
-      accessor: 'id',
+      accessor: 'id' as keyof Ticket,
       cell: (ticket: Ticket) => <span className="font-medium">{ticket.id}</span>
     },
     {
       header: 'Judul',
-      accessor: 'title',
+      accessor: 'title' as keyof Ticket,
       cell: (ticket: Ticket) => <span className="font-medium">{ticket.title}</span>
     },
     {
       header: 'Customer',
-      accessor: 'customerName',
+      accessor: 'customerName' as keyof Ticket,
       cell: (ticket: Ticket) => <span>{ticket.customerName}</span>
     },
     {
       header: 'Kategori',
-      accessor: 'category',
+      accessor: 'category' as keyof Ticket,
       cell: (ticket: Ticket) => <span>{ticket.category}</span>
     },
     {
       header: 'Prioritas',
-      accessor: 'priority',
+      accessor: 'priority' as keyof Ticket,
       cell: (ticket: Ticket) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -109,7 +109,7 @@ const Tickets: React.FC = () => {
     },
     {
       header: 'Status',
-      accessor: 'status',
+      accessor: 'status' as keyof Ticket,
       cell: (ticket: Ticket) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -126,12 +126,12 @@ const Tickets: React.FC = () => {
     },
     {
       header: 'Tanggal Dibuat',
-      accessor: 'createdAt',
+      accessor: 'createdAt' as keyof Ticket,
       cell: (ticket: Ticket) => <span>{new Date(ticket.createdAt).toLocaleDateString()}</span>
     },
     {
       header: 'Aksi',
-      accessor: 'actions',
+      accessor: 'actions' as keyof Ticket,
       cell: (ticket: Ticket) => (
         <div className="flex space-x-2">
           <Link 

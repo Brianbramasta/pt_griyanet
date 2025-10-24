@@ -43,7 +43,7 @@ const UserDetail: React.FC = () => {
     try {
       const updatedUser = {
         ...user,
-        active: !user.active
+        isActive: !user.isActive
       };
       
       const response = await fetch(`http://localhost:3001/users/${id}`, {
@@ -140,20 +140,20 @@ const UserDetail: React.FC = () => {
                 <span className={
                   `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mr-2 ${
                     user.role === 'admin' ? 'bg-purple-100 text-purple-800' :
-                    user.role === 'technician' ? 'bg-blue-100 text-blue-800' :
+                    user.role === 'noc' ? 'bg-blue-100 text-blue-800' :
                     'bg-gray-100 text-gray-800'
                   }`
                 }>
                   {user.role === 'admin' ? 'Admin' :
-                   user.role === 'technician' ? 'Teknisi' :
+                   user.role === 'noc' ? 'Teknisi' :
                    'Customer Service'}
                 </span>
                 <span className={
                   `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                   }`
                 }>
-                  {user.active ? 'Aktif' : 'Tidak Aktif'}
+                  {user.isActive ? 'Aktif' : 'Tidak Aktif'}
                 </span>
               </div>
             </div>
@@ -178,7 +178,7 @@ const UserDetail: React.FC = () => {
                 <div>
                   <p className="text-sm text-gray-500">Role</p>
                   <p>{user.role === 'admin' ? 'Admin' :
-                      user.role === 'technician' ? 'Teknisi' :
+                      user.role === 'noc' ? 'Teknisi' :
                       'Customer Service'}</p>
                 </div>
                 <div>
@@ -186,17 +186,17 @@ const UserDetail: React.FC = () => {
                   <div className="flex items-center mt-1">
                     <span className={
                       `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium mr-3 ${
-                        user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                       }`
                     }>
-                      {user.active ? 'Aktif' : 'Tidak Aktif'}
+                      {user.isActive ? 'Aktif' : 'Tidak Aktif'}
                     </span>
                     <Button 
-                      variant={user.active ? 'danger' : 'success'} 
+                      variant={user.isActive ? 'danger' : 'success'} 
                       size="sm"
                       onClick={handleToggleStatus}
                     >
-                      {user.active ? 'Nonaktifkan' : 'Aktifkan'}
+                      {user.isActive ? 'Nonaktifkan' : 'Aktifkan'}
                     </Button>
                   </div>
                 </div>
@@ -214,10 +214,10 @@ const UserDetail: React.FC = () => {
                   <p className="text-sm text-gray-500">Terakhir Login</p>
                   <p>{user.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Belum pernah login'}</p>
                 </div>
-                <div>
+                {/* <div>
                   <p className="text-sm text-gray-500">Telepon</p>
                   <p>{user.phone || '-'}</p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

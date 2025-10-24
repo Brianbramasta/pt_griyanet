@@ -125,7 +125,7 @@
       "assignedTo": "3",
       "createdAt": "2023-06-01T08:30:00.000Z",
       "updatedAt": "2023-06-01T10:15:00.000Z",
-      "status": "resolved",
+      "status": "open",
       "priority": "high",
       "category": "connection",
       "statusHistory": [
@@ -151,6 +151,14 @@
           "userId": "3",
           "userName": "Network Operations",
           "comment": "proses selesai"
+        },
+        {
+          "id": "1",
+          "status": "open",
+          "timestamp": "2025-10-24T01:16:22.005Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "notes": "terbuka"
         }
       ],
       "notes": "Customer tried restarting the router multiple times"

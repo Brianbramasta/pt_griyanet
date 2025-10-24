@@ -52,52 +52,52 @@ const Users: React.FC = () => {
   const columns = [
     {
       header: 'ID',
-      accessor: 'id',
+      accessor: 'id' as keyof User,
       cell: (user: User) => <span className="font-medium">{user.id}</span>
     },
     {
       header: 'Nama',
-      accessor: 'name',
+      accessor: 'name' as keyof User,
       cell: (user: User) => <span className="font-medium">{user.name}</span>
     },
     {
       header: 'Email',
-      accessor: 'email',
+      accessor: 'email' as keyof User,
       cell: (user: User) => <span>{user.email}</span>
     },
     {
       header: 'Role',
-      accessor: 'role',
+      accessor: 'role' as keyof User,
       cell: (user: User) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             user.role === 'admin' ? 'bg-purple-100 text-purple-800' :
-            user.role === 'technician' ? 'bg-blue-100 text-blue-800' :
+            user.role === 'noc' ? 'bg-blue-100 text-blue-800' :
             'bg-gray-100 text-gray-800'
           }`
         }>
           {user.role === 'admin' ? 'Admin' :
-           user.role === 'technician' ? 'Teknisi' :
+           user.role === 'noc' ? 'Teknisi' :
            'Customer Service'}
         </span>
       )
     },
     {
       header: 'Status',
-      accessor: 'active',
+      accessor: 'isActive' as keyof User,
       cell: (user: User) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-            user.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
           }`
         }>
-          {user.active ? 'Aktif' : 'Tidak Aktif'}
+          {user.isActive ? 'Aktif' : 'Tidak Aktif'}
         </span>
       )
     },
     {
       header: 'Aksi',
-      accessor: 'actions',
+      accessor: 'actions' as keyof User,
       cell: (user: User) => (
         <div className="flex space-x-2">
           <Link 
@@ -140,7 +140,7 @@ const Users: React.FC = () => {
             >
               <option value="all">Semua Role</option>
               <option value="admin">Admin</option>
-              <option value="technician">Teknisi</option>
+              <option value="noc">Teknisi</option>
               <option value="customer_service">Customer Service</option>
             </select>
           </div>

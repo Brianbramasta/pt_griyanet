@@ -10,7 +10,7 @@ const TicketDetail: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string>('');
   const [statusUpdate, setStatusUpdate] = useState<string>('');
-  const [comment, setComment] = useState<string>('');
+  const [notes, setNotes] = useState<string>('');
 
   useEffect(() => {
     const fetchTicketData = async () => {
@@ -43,26 +43,27 @@ const TicketDetail: React.FC = () => {
     setStatusUpdate(e.target.value);
   };
 
-  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
+  const handleNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setNotes(e.target.value);
   };
-
+  type TicketStatus = "open" | "in_progress" | "resolved" | "closed";
   const handleUpdateStatus = async () => {
     if (!ticket || !statusUpdate) return;
     
     try {
       const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
       const newStatusHistory: TicketStatusHistory = {
-        status: statusUpdate,
+        id:id || '1',
+        status: statusUpdate as TicketStatus,
         timestamp: new Date().toISOString(),
         userId: currentUser.id || '1',
         userName: currentUser.name || 'Admin User',
-        comment: comment
+        notes: notes
       };
       
       const updatedTicket = {
         ...ticket,
-        status: statusUpdate,
+        status: statusUpdate as TicketStatus,
         statusHistory: [...(ticket.statusHistory || []), newStatusHistory]
       };
       
@@ -79,7 +80,7 @@ const TicketDetail: React.FC = () => {
       }
       
       setTicket(updatedTicket);
-      setComment('');
+      setNotes('');
     } catch (err) {
       console.error('Error updating ticket status:', err);
       alert('Gagal memperbarui status tiket');
@@ -257,9 +258,9 @@ const TicketDetail: React.FC = () => {
                               </p>
                             </div>
                           </div>
-                          {history.comment && (
+                          {history.notes && (
                             <div className="mt-2 text-gray-700">
-                              {history.comment}
+                              {history.notes}
                             </div>
                           )}
                         </div>
@@ -304,8 +305,8 @@ const TicketDetail: React.FC = () => {
                   <textarea
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={4}
-                    value={comment}
-                    onChange={handleCommentChange}
+                    value={notes}
+                    onChange={handleNotesChange}
                     placeholder="Tambahkan komentar atau catatan tentang perubahan status"
                   ></textarea>
                 </div>

@@ -151,15 +151,15 @@ const CustomerDetail: React.FC = () => {
               <div className="space-y-3">
                 <div>
                   <p className="text-sm text-gray-500">Paket Internet</p>
-                  <p className="font-medium">{customer.internetPackage}</p>
+                  <p className="font-medium">{customer.serviceDetails?.packageName}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Tanggal Instalasi</p>
-                  <p>{customer.installationDate}</p>
+                  <p>{customer.serviceDetails?.installationDate}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Tanggal Pembayaran</p>
-                  <p>{customer.billingDate}</p>
+                  <p>{customer.registrationDate}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Catatan</p>

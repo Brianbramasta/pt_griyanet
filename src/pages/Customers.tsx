@@ -43,8 +43,11 @@ const Customers: React.FC = () => {
     setFilters(prev => ({ ...prev, search: e.target.value }));
   };
 
+  type Status = "all" | "active" | "inactive" | "pending";
+
   const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilters(prev => ({ ...prev, status: e.target.value }));
+    const value = e.target.value as Status;
+    setFilters(prev => ({ ...prev, status: value }));
   };
 
   const handleRowClick = (customer: Customer) => {

@@ -1,14 +1,15 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 /**
  * Button variant types
  */
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'destructive' | 'ghost' | 'link';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'destructive' | 'ghost' | 'link' | 'danger' | 'success';
 
 /**
  * Button size types
  */
-type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
+type ButtonSize = 'default' | 'sm' | 'lg' | 'md' | 'icon';
 
 /**
  * Button component props
@@ -49,6 +50,8 @@ const Button: React.FC<ButtonProps> = ({
     destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
     ghost: 'hover:bg-accent hover:text-accent-foreground',
     link: 'underline-offset-4 hover:underline text-primary',
+    danger: 'bg-danger text-danger-foreground hover:bg-danger/90',
+    success: 'bg-success text-success-foreground hover:bg-success/90',
   };
   
   // Size styles
@@ -57,6 +60,7 @@ const Button: React.FC<ButtonProps> = ({
     sm: 'h-9 px-3 rounded-md',
     lg: 'h-11 px-8 rounded-md',
     icon: 'h-10 w-10',
+    md: 'h-10 px-4',
   };
 
   return (
