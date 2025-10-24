@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { AuthUser, LoginCredentials } from '../types';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { setCredentials, logout as logoutAction, selectCurrentUser, selectIsAuthenticated } from '../redux/slices/authSlice';
 
 interface AuthContextType {
   user: AuthUser | null;
@@ -21,7 +23,11 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<AuthUser | null>(null);
+  // Menggunakan Redux state
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectCurrentUser) as AuthUser | null;
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +39,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (token && storedUser) {
         try {
-          setUser(JSON.parse(storedUser));
+          const parsedUser = JSON.parse(storedUser);
+          // Dispatch ke Redux store
+          dispatch(setCredentials({ user: parsedUser, token }));
         } catch (err) {
           console.error('Error parsing stored user:', err);
           localStorage.removeItem('auth_token');
@@ -45,7 +53,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     checkAuth();
-  }, []);
+  }, [dispatch]);
 
   const login = async (credentials: LoginCredentials): Promise<boolean> => {
     setIsLoading(true);
@@ -80,20 +88,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           });
           
           // Store auth data
-          localStorage.setItem('auth_token', 'demo_token_' + user.id);
-          localStorage.setItem('user', JSON.stringify({
+          const token = 'demo_token_' + user.id;
+          const userData = {
             id: user.id,
             name: user.name,
             email: user.email,
             role: user.role
-          }));
+          };
           
-          setUser({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            role: user.role
-          });
+          localStorage.setItem('auth_token', token);
+          localStorage.setItem('user', JSON.stringify(userData));
+          
+          // Dispatch ke Redux store
+          dispatch(setCredentials({ 
+            user: userData, 
+            token 
+          }));
           
           setError(null);
           setIsLoading(false);
@@ -115,12 +125,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('user');
-    setUser(null);
+    
+    // Dispatch logout action ke Redux
+    dispatch(logoutAction());
   };
 
   const value = {
     user,
-    isAuthenticated: !!user,
+    isAuthenticated,
     isLoading,
     login,
     logout,

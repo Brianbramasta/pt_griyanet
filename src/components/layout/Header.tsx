@@ -26,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick, title = 'Dashboard' }) => 
   };
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-background px-4 lg:px-6">
+    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b bg-grey-800 px-4 lg:px-6">
       {/* Left section with menu button and title */}
       <div className="flex items-center gap-2 lg:gap-4">
         <Button

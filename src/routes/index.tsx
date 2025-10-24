@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from '../components/layout';
 import { useAuth } from '../context/AuthContext';
+import RoleBasedRoute from '../components/RoleBasedRoute';
 
 // Lazy load pages for better performance
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
@@ -60,17 +61,45 @@ const AppRoutes: React.FC = () => {
             </ProtectedRoute>
           }
         >
-          <Route index element={<Dashboard />} />
+          <Route index element={
+            <RoleBasedRoute allowedRoles={['admin', 'cs', 'noc']}>
+              <Dashboard />
+            </RoleBasedRoute>
+          } />
           <Route path="customers" element={<Customers />} />
-          <Route path="customers/new" element={<CustomerNew />} />
-          <Route path="customers/edit/:id" element={<CustomerEdit />} />
+          <Route path="customers/new" element={
+            <RoleBasedRoute allowedRoles={['admin', 'cs']}>
+              <CustomerNew />
+            </RoleBasedRoute>
+          } />
+          <Route path="customers/edit/:id" element={
+            <RoleBasedRoute allowedRoles={['admin', 'cs']}>
+              <CustomerEdit />
+            </RoleBasedRoute>
+          } />
           <Route path="customers/:id" element={<CustomerDetail />} />
           <Route path="tickets" element={<Tickets />} />
-          <Route path="tickets/new" element={<TicketNew />} />
+          <Route path="tickets/new" element={
+            <RoleBasedRoute allowedRoles={['admin', 'cs']}>
+              <TicketNew />
+            </RoleBasedRoute>
+          } />
           <Route path="tickets/:id" element={<TicketDetail />} />
-          <Route path="users" element={<Users />} />
-          <Route path="users/:id" element={<UserDetail />} />
-          <Route path="admin/reports" element={<AdminReports />} />
+          <Route path="users" element={
+            <RoleBasedRoute allowedRoles={['admin']}>
+              <Users />
+            </RoleBasedRoute>
+          } />
+          <Route path="users/:id" element={
+            <RoleBasedRoute allowedRoles={['admin']}>
+              <UserDetail />
+            </RoleBasedRoute>
+          } />
+          <Route path="admin/reports" element={
+            <RoleBasedRoute allowedRoles={['admin']}>
+              <AdminReports />
+            </RoleBasedRoute>
+          } />
         </Route>
         
         {/* Not found route */}

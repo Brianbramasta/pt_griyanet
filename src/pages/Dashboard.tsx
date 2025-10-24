@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components';
 import type { Ticket } from '../types';
+import { useAppSelector } from '../redux/hooks';
+import { selectUserRole } from '../redux/slices/authSlice';
 
 const Dashboard: React.FC = () => {
   const [recentTickets, setRecentTickets] = useState<Ticket[]>([]);
@@ -12,6 +14,9 @@ const Dashboard: React.FC = () => {
     resolved: 0
   });
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Mengambil role user dari Redux store
+  const userRole = useAppSelector(selectUserRole);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -130,21 +135,23 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-medium mb-4">Aksi Cepat</h2>
-        <div className="flex flex-wrap gap-4">
-          <Link to="/tickets/new">
-            <Button variant="primary">Buat Tiket Baru</Button>
-          </Link>
-          <Link to="/customers/new">
-            <Button variant="secondary">Tambah Customer</Button>
-          </Link>
-          <Link to="/users/new">
-            <Button variant="outline">Tambah Pengguna</Button>
-          </Link>
+      {/* Quick Actions - Hanya tampilkan jika bukan role NOC */}
+      {userRole !== 'noc' && (
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-lg font-medium mb-4">Aksi Cepat</h2>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/tickets/new">
+              <Button variant="primary">Buat Tiket Baru</Button>
+            </Link>
+            <Link to="/customers/new">
+              <Button variant="secondary">Tambah Customer</Button>
+            </Link>
+            <Link to="/users/new">
+              <Button variant="outline">Tambah Pengguna</Button>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
