@@ -11,7 +11,9 @@ const Dashboard: React.FC = () => {
     total: 0,
     open: 0,
     inProgress: 0,
-    resolved: 0
+    resolved: 0,
+    closed: 0,
+    cancelled: 0
   });
   const [isLoading, setIsLoading] = useState(true);
   
@@ -34,7 +36,9 @@ const Dashboard: React.FC = () => {
           total: allTickets.length,
           open: allTickets.filter((ticket: Ticket) => ticket.status === 'open').length,
           inProgress: allTickets.filter((ticket: Ticket) => ticket.status === 'in_progress').length,
-          resolved: allTickets.filter((ticket: Ticket) => ticket.status === 'resolved').length
+          resolved: allTickets.filter((ticket: Ticket) => ticket.status === 'resolved').length,
+          closed: allTickets.filter((ticket: Ticket) => ticket.status === 'closed').length,
+          cancelled: allTickets.filter((ticket: Ticket) => ticket.status === 'cancelled').length
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
@@ -79,11 +83,13 @@ const Dashboard: React.FC = () => {
       <h1 className="text-2xl font-semibold mb-6">Dashboard</h1>
       
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
         <StatCard title="Total Tiket" value={ticketStats.total} color="border-blue-500" />
         <StatCard title="Tiket Terbuka" value={ticketStats.open} color="border-yellow-500" />
         <StatCard title="Dalam Proses" value={ticketStats.inProgress} color="border-orange-500" />
         <StatCard title="Terselesaikan" value={ticketStats.resolved} color="border-green-500" />
+        <StatCard title="Ditutup" value={ticketStats.closed} color="border-gray-500" />
+        <StatCard title="Dibatalkan" value={ticketStats.cancelled} color="border-red-500" />
       </div>
 
       {/* Recent Tickets */}
@@ -115,12 +121,18 @@ const Dashboard: React.FC = () => {
                         `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                           ticket.status === 'open' ? 'bg-yellow-100 text-yellow-800' :
                           ticket.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
-                          'bg-green-100 text-green-800'
+                          ticket.status === 'resolved' ? 'bg-green-100 text-green-800' :
+                          ticket.status === 'closed' ? 'bg-gray-100 text-gray-800' :
+                          ticket.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+                          'bg-gray-100 text-gray-800'
                         }`
                       }>
                         {ticket.status === 'open' ? 'Terbuka' :
                          ticket.status === 'in_progress' ? 'Dalam Proses' :
-                         'Terselesaikan'}
+                         ticket.status === 'resolved' ? 'Terselesaikan' :
+                         ticket.status === 'closed' ? 'Ditutup' :
+                         ticket.status === 'cancelled' ? 'Dibatalkan' :
+                         ticket.status}
                       </span>
                     </div>
                   </div>

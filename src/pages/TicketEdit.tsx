@@ -226,9 +226,11 @@ const TicketEdit: React.FC = () => {
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700">Status</label>
                 <select name="status" value={form.status} onChange={handleChange} className="px-3 py-2 border rounded-md w-full">
-                  {statuses.map(s => (
-                    <option key={s} value={s} disabled={s === 'closed' && ticket?.status !== 'resolved'}>{s}</option>
-                  ))}
+                  <option value="open">Terbuka</option>
+                  <option value="in_progress">Dalam Proses</option>
+                  <option value="resolved">Terselesaikan</option>
+                  <option value="closed" disabled={form.status !== 'resolved'}>Ditutup</option>
+                  <option value="cancelled">Dibatalkan</option>
                 </select>
               </div>
               <div className="space-y-2">

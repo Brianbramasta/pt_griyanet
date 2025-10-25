@@ -225,14 +225,14 @@ const UserDetail: React.FC = () => {
       </div>
 
       {/* Activity Log - Placeholder for future implementation */}
-      <div className="bg-white rounded-lg shadow overflow-hidden">
+      {/* <div className="bg-white rounded-lg shadow overflow-hidden">
         <div className="p-4 border-b">
           <h2 className="text-lg font-medium">Log Aktivitas</h2>
         </div>
         <div className="p-8 text-center text-gray-500">
           <p>Fitur log aktivitas akan segera hadir</p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

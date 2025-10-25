@@ -19,6 +19,8 @@ const UserDetail = React.lazy(() => import('../pages/UserDetail'));
 const AdminReports = React.lazy(() => import('../pages/AdminReports'));
 const Login = React.lazy(() => import('../pages/Login'));
 const NotFound = React.lazy(() => import('../pages/NotFound'));
+const UserNew = React.lazy(() => import('../pages/UserNew'))
+const UserEdit = React.lazy(() => import('../pages/UserEdit'))
 
 // Loading fallback
 const LoadingFallback = () => (
@@ -97,16 +99,32 @@ const AppRoutes: React.FC = () => {
             </RoleBasedRoute>
           } />
           <Route path="users/:id" element={
-            <RoleBasedRoute allowedRoles={['admin']}>
+            <RoleBasedRoute allowedRoles={["admin"]}>
               <UserDetail />
             </RoleBasedRoute>
           } />
+          <Route path="users/edit/:id" element={
+            <RoleBasedRoute allowedRoles={['admin']}>
+              <UserEdit />
+            </RoleBasedRoute>
+          } />
+          
           <Route path="reports" element={
              <RoleBasedRoute allowedRoles={['admin']}>
                <AdminReports />
              </RoleBasedRoute>
            } />
         </Route>
+        <Route
+          path="/users/new"
+          element={
+            <RoleBasedRoute allowedRoles={['admin']}>
+              <React.Suspense fallback={<LoadingFallback />}>
+                <UserNew />
+              </React.Suspense>
+            </RoleBasedRoute>
+          }
+        />
         
         {/* Not found route */}
         <Route path="*" element={<NotFound />} />

@@ -8,7 +8,7 @@
       "role": "admin",
       "avatar": "https://i.pravatar.cc/150?img=1",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "lastLogin": "2025-10-24T17:17:36.194Z",
+      "lastLogin": "2025-10-25T04:46:32.947Z",
       "isActive": true,
       "password": "admin123"
     },
@@ -20,7 +20,7 @@
       "role": "cs",
       "avatar": "https://i.pravatar.cc/150?img=2",
       "createdAt": "2023-01-15T00:00:00.000Z",
-      "lastLogin": "2025-10-24T17:17:08.721Z",
+      "lastLogin": "2025-10-25T04:20:47.025Z",
       "isActive": true,
       "password": "cs123"
     },
@@ -35,6 +35,16 @@
       "lastLogin": "2025-10-24T00:00:36.734Z",
       "isActive": true,
       "password": "noc123"
+    },
+    {
+      "name": "user baru",
+      "email": "userbaru@example.com",
+      "username": "userbaru",
+      "role": "admin",
+      "isActive": true,
+      "password": "user12345",
+      "confirmPassword": "user12345",
+      "id": "faa1"
     }
   ],
   "customers": [
@@ -93,25 +103,6 @@
         "installationDate": "2023-05-12T00:00:00.000Z"
       },
       "notes": "Installation pending due to building access issues"
-    },
-    {
-      "name": "Brian Bramasta1",
-      "email": "Brianaldybramasta@gmail.com",
-      "phone": "0895397115216",
-      "address": "surabaya",
-      "city": "Kota Surabaya",
-      "postalCode": "60292",
-      "registrationDate": "2025-10-23T23:37:37.742Z",
-      "status": "active",
-      "serviceType": "Fiber Optic",
-      "serviceDetails": {
-        "packageName": "oke",
-        "bandwidth": "50 mps",
-        "monthlyFee": 35000,
-        "installationDate": "2025-10-24"
-      },
-      "notes": "test",
-      "id": "a110"
     }
   ],
   "tickets": [

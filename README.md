@@ -34,6 +34,19 @@ npm run server
 npm run dev:all
 ```
 
+## User login
+
+Admin:
+
+- username: admin@griyanet.com
+- password: admin123
+  noc:
+- username: noc@griyanet.com
+- password: noc123
+  customer:
+- username: customer@griyanet.com
+- password: customer123
+
 ## API Endpoints
 
 ### Customers
@@ -81,6 +94,13 @@ npm run dev:all
 ```
 
 ## Pengembangan
+
+### Menjalankan Json Server
+
+```bash
+npm run server:json
+
+```
 
 ### Menjalankan Test
 

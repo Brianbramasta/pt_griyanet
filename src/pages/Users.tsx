@@ -84,8 +84,7 @@ const Users: React.FC = () => {
     },
     {
       header: 'Status',
-      accessor: 'isActive' as keyof User,
-      cell: (user: User) => (
+      accessor: (user: User) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             user.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
@@ -97,8 +96,7 @@ const Users: React.FC = () => {
     },
     {
       header: 'Aksi',
-      accessor: 'actions' as keyof User,
-      cell: (user: User) => (
+      accessor: (user: User) => (
         <div className="flex space-x-2">
           <Link 
             to={`/users/${user.id}`}
@@ -109,6 +107,7 @@ const Users: React.FC = () => {
           </Link>
         </div>
       )
+      
     }
   ];
 
