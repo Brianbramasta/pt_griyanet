@@ -51,11 +51,16 @@ const TicketDetail: React.FC = () => {
     if (!ticket || !statusUpdate) return;
     
     try {
+      if (statusUpdate === 'closed' && ticket.status !== 'resolved') {
+        alert('Tiket harus diselesaikan (resolved) terlebih dahulu sebelum ditutup (closed)');
+        return;
+      }
       const currentUser = JSON.parse(localStorage.getItem('user') || '{}');
+      const now = new Date().toISOString();
       const newStatusHistory: TicketStatusHistory = {
         id:id || '1',
         status: statusUpdate as TicketStatus,
-        timestamp: new Date().toISOString(),
+        timestamp: now,
         userId: currentUser.id || '1',
         userName: currentUser.name || 'Admin User',
         notes: notes
@@ -64,6 +69,9 @@ const TicketDetail: React.FC = () => {
       const updatedTicket = {
         ...ticket,
         status: statusUpdate as TicketStatus,
+        updatedAt: now,
+        resolvedAt: statusUpdate === 'resolved' ? now : ticket.resolvedAt,
+        closedAt: statusUpdate === 'closed' ? now : ticket.closedAt,
         statusHistory: [...(ticket.statusHistory || []), newStatusHistory]
       };
       
@@ -296,6 +304,7 @@ const TicketDetail: React.FC = () => {
                     <option value="open">Terbuka</option>
                     <option value="in_progress">Dalam Proses</option>
                     <option value="resolved">Terselesaikan</option>
+                    <option value="closed" disabled={ticket?.status !== 'resolved'}>Ditutup</option>
                   </select>
                 </div>
                 <div>

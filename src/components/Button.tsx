@@ -44,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({
   
   // Variant styles
   const variantStyles = {
-    primary: 'bg-primary text-primary-foreground hover:bg-primary/90',
+    primary: 'bg-primary text-white text-primary-foreground hover:bg-primary/90',
     secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
     outline: 'border border-input hover:bg-accent hover:text-accent-foreground',
     destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',

@@ -124,9 +124,9 @@
       "createdBy": "2",
       "assignedTo": "3",
       "createdAt": "2023-06-01T08:30:00.000Z",
-      "updatedAt": "2023-06-01T10:15:00.000Z",
-      "status": "open",
-      "priority": "high",
+      "updatedAt": "2025-10-25T03:49:22.708Z",
+      "status": "cancelled",
+      "priority": "medium",
       "category": "connection",
       "statusHistory": [
         {
@@ -159,9 +159,35 @@
           "userId": "3",
           "userName": "Network Operations",
           "notes": "terbuka"
+        },
+        {
+          "id": "1",
+          "status": "resolved",
+          "timestamp": "2025-10-25T03:49:01.331Z",
+          "userId": "1",
+          "userName": "Admin User",
+          "notes": ""
+        },
+        {
+          "id": "1",
+          "status": "open",
+          "timestamp": "2025-10-25T03:49:07.357Z",
+          "userId": "1",
+          "userName": "Admin User",
+          "notes": ""
+        },
+        {
+          "id": "6f97004c-6527-4d49-8aa1-b2781f7e0e98",
+          "status": "cancelled",
+          "timestamp": "2025-10-25T03:49:22.708Z",
+          "userId": "1",
+          "userName": "Admin User",
+          "notes": "Customer tried restarting the router multiple times"
         }
       ],
-      "notes": "Customer tried restarting the router multiple times"
+      "notes": "Customer tried restarting the router multiple times",
+      "attachments": [],
+      "resolvedAt": "2025-10-25T03:49:01.331Z"
     },
     {
       "id": "2",

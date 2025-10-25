@@ -22,6 +22,10 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 210 40% 98%;
+    --danger: 0 84.2% 60.2%;
+    --danger-foreground: 210 40% 98%;
     --radius: 0.5rem;
   }
 
@@ -45,6 +49,10 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+    --success: 142.1 76.2% 36.3%;
+    --success-foreground: 210 40% 98%;
+    --danger: 0 62.8% 30.6%;
+    --danger-foreground: 210 40% 98%;
   }
 }
 
@@ -54,5 +62,40 @@
   }
   body {
     /* @apply bg-background text-foreground; */
+    
   }
+  .bg-primary{
+    background-color: #4949ff;
+    color: white
+  }
+}
+
+@layer utilities {
+  .bg-primary { background-color: hsl(var(--primary)); }
+  .text-primary { color: hsl(var(--primary)); }
+  .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+  .hover\:bg-primary\/90:hover { background-color: hsl(var(--primary) / 0.9); }
+
+  .bg-secondary { background-color: hsl(var(--secondary)); }
+  .text-secondary-foreground { color: hsl(var(--secondary-foreground)); }
+  .hover\:bg-secondary\/80:hover { background-color: hsl(var(--secondary) / 0.8); }
+
+  .border-input { border-color: hsl(var(--input)); }
+  .hover\:bg-accent:hover { background-color: hsl(var(--accent)); }
+  .hover\:text-accent-foreground:hover { color: hsl(var(--accent-foreground)); }
+
+  .bg-destructive { background-color: hsl(var(--destructive)); }
+  .text-destructive-foreground { color: hsl(var(--destructive-foreground)); }
+  .hover\:bg-destructive\/90:hover { background-color: hsl(var(--destructive) / 0.9); }
+
+  .underline-offset-4 { text-underline-offset: 4px; }
+  .hover\:underline:hover { text-decoration: underline; }
+
+  .bg-danger { background-color: hsl(var(--danger)); }
+  .text-danger-foreground { color: hsl(var(--danger-foreground)); }
+  .hover\:bg-danger\/90:hover { background-color: hsl(var(--danger) / 0.9); }
+
+  .bg-success { background-color: hsl(var(--success)); }
+  .text-success-foreground { color: hsl(var(--success-foreground)); }
+  .hover\:bg-success\/90:hover { background-color: hsl(var(--success) / 0.9); }
 }

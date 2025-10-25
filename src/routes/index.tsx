@@ -13,6 +13,7 @@ const CustomerEdit = React.lazy(() => import('../pages/CustomerEdit'));
 const Tickets = React.lazy(() => import('../pages/Tickets'));
 const TicketNew = React.lazy(() => import('../pages/TicketNew'));
 const TicketDetail = React.lazy(() => import('../pages/TicketDetail'));
+const TicketEdit = React.lazy(() => import('../pages/TicketEdit'));
 const Users = React.lazy(() => import('../pages/Users'));
 const UserDetail = React.lazy(() => import('../pages/UserDetail'));
 const AdminReports = React.lazy(() => import('../pages/AdminReports'));
@@ -84,6 +85,11 @@ const AppRoutes: React.FC = () => {
               <TicketNew />
             </RoleBasedRoute>
           } />
+          <Route path="tickets/edit/:id" element={
+            <RoleBasedRoute allowedRoles={['admin', 'cs']}>
+              <TicketEdit />
+            </RoleBasedRoute>
+          } />
           <Route path="tickets/:id" element={<TicketDetail />} />
           <Route path="users" element={
             <RoleBasedRoute allowedRoles={['admin']}>
@@ -95,11 +101,11 @@ const AppRoutes: React.FC = () => {
               <UserDetail />
             </RoleBasedRoute>
           } />
-          <Route path="admin/reports" element={
-            <RoleBasedRoute allowedRoles={['admin']}>
-              <AdminReports />
-            </RoleBasedRoute>
-          } />
+          <Route path="reports" element={
+             <RoleBasedRoute allowedRoles={['admin']}>
+               <AdminReports />
+             </RoleBasedRoute>
+           } />
         </Route>
         
         {/* Not found route */}
