@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Table } from '../components';
 import type { Customer, CustomerFilters } from '../types';
+import { customerService } from '../services/customerService';
 
 const Customers: React.FC = () => {
   const navigate = useNavigate();
@@ -16,18 +17,21 @@ const Customers: React.FC = () => {
     const fetchCustomers = async () => {
       setIsLoading(true);
       try {
-        let url = 'http://localhost:3001/customers?';
+        // let url = 'http://localhost:3001/customers?';
         
-        if (filters.search) {
-          url += `&q=${filters.search}`;
-        }
+        // if (filters.search) {
+        //   url += `&q=${filters.search}`;
+        // }
         
-        if (filters.status && filters.status !== 'all') {
-          url += `&status=${filters.status}`;
-        }
+        // if (filters.status && filters.status !== 'all') {
+        //   url += `&status=${filters.status}`;
+        // }
         
-        const response = await fetch(url);
-        const data = await response.json();
+        // const response = await fetch(url);
+        const data = await customerService.getAll(filters);
+        console.log('Fetched customers:', data);
+        console.log(filters)
+        // const data = await response.json();
         setCustomers(data);
       } catch (error) {
         console.error('Error fetching customers:', error);

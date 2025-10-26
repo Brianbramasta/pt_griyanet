@@ -1,5 +1,5 @@
 import { api } from './api';
-import type { AuthUser, LoginCredentials } from '../types/user';
+import type { AuthUser, LoginCredentials } from '../types';
 
 // const ENDPOINT = '/auth';
 
@@ -14,33 +14,33 @@ export const authService = {
    */
   login: async (credentials: LoginCredentials): Promise<{ user: AuthUser; token: string }> => {
     try {
-      // For JSON Server implementation, we need to find the user first
+      // For JSON Server implementation, find the user by email
       const users = await api.get<any[]>(`/users?email=${credentials.email}`);
-      
-      if (users.length === 0) {
+
+      if (!users || users.length === 0) {
         throw new Error('Email atau password salah');
       }
-      
+
       const user = users[0];
-      
-      // In a real app, password would be hashed and compared on the server
-      // For demo, we'll just check if password is 'password'
-      if (credentials.password !== 'password') {
+
+      // In a real app, password would be hashed and verified on the server.
+      // For demo, compare with stored password from db.json
+      if (credentials.password !== user.password) {
         throw new Error('Email atau password salah');
       }
-      
+
       // Update user's last login
       const updatedUser = {
         ...user,
         lastLogin: new Date().toISOString()
       };
-      
+
       await api.put(`/users/${user.id}`, updatedUser);
-      
-      // Create auth token (in a real app, this would be done by the server)
+
+      // Create auth token (in a real app, this would be issued by the server)
       const token = `demo_token_${user.id}`;
-      
-      // Return user data and token
+
+      // Return minimal user data and token
       return {
         user: {
           id: user.id,

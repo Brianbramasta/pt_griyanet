@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { AuthUser, LoginCredentials } from '../types';
+import { authService } from '../services/authService';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { setCredentials, logout as logoutAction, selectCurrentUser, selectIsAuthenticated } from '../redux/slices/authSlice';
 
@@ -58,65 +59,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (credentials: LoginCredentials): Promise<boolean> => {
     setIsLoading(true);
     setError(null);
-    
     try {
-      // In a real app, this would be an API call
-      // For demo purposes, we'll simulate an API call
-      const response = await fetch('http://localhost:3001/users?email=' + credentials.email);
-      const users = await response.json();
-      
-      // Find user with matching credentials
-      // Note: In a real app, password would be hashed and compared on the server
-      const user = users.find((u: any) => u.email === credentials.email);
-      
-      if (user) {
-        // Simulate password check (in a real app, this would be done securely on the server)
-        // For demo, we'll compare with the stored user password from db.json
-        if (credentials.password === user.password) {
-          // Update user's last login
-          const updatedUser = {
-            ...user,
-            lastLogin: new Date().toISOString()
-          };
-          
-          await fetch(`http://localhost:3001/users/${user.id}`, {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedUser)
-          });
-          
-          // Store auth data
-          const token = 'demo_token_' + user.id;
-          const userData = {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            role: user.role
-          };
-          
-          localStorage.setItem('auth_token', token);
-          localStorage.setItem('user', JSON.stringify(userData));
-          
-          // Dispatch ke Redux store
-          dispatch(setCredentials({ 
-            user: userData, 
-            token 
-          }));
-          
-          setError(null);
-          setIsLoading(false);
-          return true;
-        }
-      }
-      
-      setError('Email atau password salah');
+      const { user: userData, token } = await authService.login(credentials);
+
+      // Store auth data
+      localStorage.setItem('auth_token', token);
+      localStorage.setItem('user', JSON.stringify(userData));
+
+      // Dispatch to Redux store
+      dispatch(setCredentials({ user: userData, token }));
+
+      setError(null);
       setIsLoading(false);
-      return false;
+      return true;
     } catch (err) {
       console.error('Login error:', err);
-      setError('Terjadi kesalahan saat login');
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Terjadi kesalahan saat login');
+      }
       setIsLoading(false);
       return false;
     }

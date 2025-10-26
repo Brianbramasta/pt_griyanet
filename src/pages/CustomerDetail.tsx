@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components';
 import type { Customer, Ticket } from '../types';
+import { customerService } from '../services/customerService';
 
 const CustomerDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,18 +19,21 @@ const CustomerDetail: React.FC = () => {
       
       try {
         // Fetch customer details
-        const customerResponse = await fetch(`http://localhost:3001/customers/${id}`);
+        // const customerResponse = await fetch(`http://localhost:3001/customers/${id}`);
         
-        if (!customerResponse.ok) {
-          throw new Error('Customer tidak ditemukan');
-        }
         
-        const customerData = await customerResponse.json();
+        // if (!customerResponse.ok) {
+        //   throw new Error('Customer tidak ditemukan');
+        // }
+        
+        // const customerData = await customerResponse.json();
+        const customerData = await customerService.getById(id!);
         setCustomer(customerData);
         
         // Fetch customer tickets
-        const ticketsResponse = await fetch(`http://localhost:3001/tickets?customerId=${id}`);
-        const ticketsData = await ticketsResponse.json();
+        // const ticketsResponse = await fetch(`http://localhost:3001/tickets?customerId=${id}`);
+        // const ticketsData = await ticketsResponse.json();
+        const ticketsData = await customerService.getTickets(id!);
         setCustomerTickets(ticketsData);
       } catch (err) {
         console.error('Error fetching customer data:', err);

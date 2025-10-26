@@ -8,7 +8,7 @@
       "role": "admin",
       "avatar": "https://i.pravatar.cc/150?img=1",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "lastLogin": "2025-10-25T04:46:32.947Z",
+      "lastLogin": "2025-10-26T07:47:01.724Z",
       "isActive": true,
       "password": "admin123"
     },
@@ -20,7 +20,7 @@
       "role": "cs",
       "avatar": "https://i.pravatar.cc/150?img=2",
       "createdAt": "2023-01-15T00:00:00.000Z",
-      "lastLogin": "2025-10-25T04:20:47.025Z",
+      "lastLogin": "2025-10-26T07:49:02.879Z",
       "isActive": true,
       "password": "cs123"
     },
@@ -94,7 +94,7 @@
       "city": "Surabaya",
       "postalCode": "60234",
       "registrationDate": "2023-05-05T00:00:00.000Z",
-      "status": "pending",
+      "status": "inactive",
       "serviceType": "Fiber Optic",
       "serviceDetails": {
         "packageName": "Home Premium",
