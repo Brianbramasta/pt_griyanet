@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components';
 import type { User } from '../types';
+import { userService } from '../services';
 
 const UserDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -16,13 +17,14 @@ const UserDetail: React.FC = () => {
       setError('');
       
       try {
-        const response = await fetch(`http://localhost:3001/users/${id}`);
+        // const response = await fetch(`http://localhost:3001/users/${id}`);
         
-        if (!response.ok) {
-          throw new Error('Pengguna tidak ditemukan');
-        }
+        // if (!response.ok) {
+        //   throw new Error('Pengguna tidak ditemukan');
+        // }
         
-        const data = await response.json();
+        // const data = await response.json();
+        const data = await userService.getById(id!);
         setUser(data);
       } catch (err) {
         console.error('Error fetching user data:', err);

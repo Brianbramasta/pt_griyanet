@@ -47,3 +47,9 @@ export interface LoginCredentials {
   email?: string;
   password: string;
 }
+
+export interface userFilter {
+  search?: string
+  role?: string,
+  isActive?:boolean,
+}

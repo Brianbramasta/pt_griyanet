@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Table } from '../components';
-import type { User } from '../types';
+import type { User, userFilter, UserRole } from '../types';
+import { userService } from '../services';
 
 const Users: React.FC = () => {
   const navigate = useNavigate();
@@ -9,23 +10,33 @@ const Users: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('all');
+   const [filters, setFilters] = useState<userFilter>({
+      search: '',
+      role: ''
+    });
+  
 
   useEffect(() => {
     const fetchUsers = async () => {
       setIsLoading(true);
       try {
-        let url = 'http://localhost:3001/users';
+        // let url = 'http://localhost:3001/users';
         
-        // Add query parameters for filtering
-        const params = new URLSearchParams();
-        if (search) params.append('q', search);
-        if (roleFilter !== 'all') params.append('role', roleFilter);
+        // // Add query parameters for filtering
+        // const params = new URLSearchParams();
+        // if (search) params.append('q', search);
+        // if (roleFilter !== 'all') params.append('role', roleFilter);
         
-        const queryString = params.toString();
-        if (queryString) url += `?${queryString}`;
+      
+
         
-        const response = await fetch(url);
-        const data = await response.json();
+        // const queryString = params.toString();
+        // if (queryString) url += `?${queryString}`;
+        
+        // const response = await fetch(url);
+        // const data = await response.json();
+        console.log('filters',filters)
+        const data = await userService.getAll(filters);
         setUsers(data);
       } catch (error) {
         console.error('Error fetching users:', error);
@@ -39,10 +50,12 @@ const Users: React.FC = () => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
+    setFilters(prev => ({ ...prev, search: e.target.value }));
   };
 
   const handleRoleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRoleFilter(e.target.value);
+    setFilters(prev => ({ ...prev, role: e.target.value as UserRole }));
   };
 
   const handleRowClick = (user: User) => {

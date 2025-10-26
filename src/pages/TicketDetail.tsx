@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components';
 import type { Ticket, TicketStatusHistory } from '../types';
+import { ticketService } from '../services';
 
 const TicketDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,13 +19,15 @@ const TicketDetail: React.FC = () => {
       setError('');
       
       try {
-        const response = await fetch(`http://localhost:3001/tickets/${id}`);
+        // const response = await fetch(`http://localhost:3001/tickets/${id}`);
         
-        if (!response.ok) {
-          throw new Error('Tiket tidak ditemukan');
-        }
+        // if (!response.ok) {
+        //   throw new Error('Tiket tidak ditemukan');
+        // }
         
-        const data = await response.json();
+        // const data = await response.json();
+        if (!id) throw new Error('Tiket tidak ditemukan');
+        const data = await ticketService.getById(id!);
         setTicket(data);
       } catch (err) {
         console.error('Error fetching ticket data:', err);

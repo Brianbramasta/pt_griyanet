@@ -1,5 +1,5 @@
 import { api } from './api';
-import type { User, UserFormData, UserRole } from '../types/user';
+import type { User, userFilter, UserFormData, UserRole } from '../types/user';
 
 const ENDPOINT = '/users';
 
@@ -12,7 +12,7 @@ export const userService = {
    * @param filters - Optional filters for users
    * @returns Promise with array of users
    */
-  getAll: async (filters?: { role?: UserRole; search?: string; isActive?: boolean }): Promise<User[]> => {
+  getAll: async (filters?: userFilter): Promise<User[]> => {
     const params: Record<string, string> = {};
     
     if (filters) {

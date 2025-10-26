@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Table } from '../components';
 import type { Ticket, TicketFilters } from '../types';
+import { ticketService } from '../services/ticketService';
 
 const Tickets: React.FC = () => {
   const navigate = useNavigate();
@@ -9,35 +10,36 @@ const Tickets: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState<TicketFilters>({
     search: '',
-    status: 'all',
-    priority: 'all',
-    category: 'all'
+    status: '',
+    priority: '',
+    category: ''
   });
 
   useEffect(() => {
     const fetchTickets = async () => {
       setIsLoading(true);
       try {
-        let url = 'http://localhost:3001/tickets?_sort=createdAt&_order=desc';
+        // let url = 'http://localhost:3001/tickets?_sort=createdAt&_order=desc';
         
-        if (filters.search) {
-          url += `&q=${filters.search}`;
-        }
+        // if (filters.search) {
+        //   url += `&q=${filters.search}`;
+        // }
         
-        if (filters.status && filters.status !== 'all') {
-          url += `&status=${filters.status}`;
-        }
+        // if (filters.status && filters.status !== 'all') {
+        //   url += `&status=${filters.status}`;
+        // }
         
-        if (filters.priority && filters.priority !== 'all') {
-          url += `&priority=${filters.priority}`;
-        }
+        // if (filters.priority && filters.priority !== 'all') {
+        //   url += `&priority=${filters.priority}`;
+        // }
         
-        if (filters.category && filters.category !== 'all') {
-          url += `&category=${filters.category}`;
-        }
+        // if (filters.category && filters.category !== 'all') {
+        //   url += `&category=${filters.category}`;
+        // }
         
-        const response = await fetch(url);
-        const data = await response.json();
+        // const response = await fetch(url);
+        // const data = await response.json();
+        const data = await ticketService.getAll(filters);
         setTickets(data);
       } catch (error) {
         console.error('Error fetching tickets:', error);
@@ -52,15 +54,15 @@ const Tickets: React.FC = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters(prev => ({ ...prev, search: e.target.value }));
   };
-  type TicketStatus = 'open' | 'in_progress' | 'resolved' | 'closed' | 'cancelled' | 'all';
+  type TicketStatus = 'open' | 'in_progress' | 'resolved' | 'closed' | 'cancelled' | '';
   const handleStatusFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, status: e.target.value as TicketStatus }));
   };
-  type TicketPriority = 'low' | 'medium' | 'high' | 'critical' | 'all';
+  type TicketPriority = 'low' | 'medium' | 'high' | 'critical' | '';
   const handlePriorityFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, priority: e.target.value as TicketPriority }));
   };
-  type TicketCategory = 'connection' | 'speed' | 'billing' | 'hardware' | 'other' | 'all';
+  type TicketCategory = 'connection' | 'speed' | 'billing' | 'hardware' | 'other' | '';
   const handleCategoryFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilters(prev => ({ ...prev, category: e.target.value as TicketCategory }));
   };
@@ -177,7 +179,7 @@ const Tickets: React.FC = () => {
               value={filters.status}
               onChange={handleStatusFilter}
             >
-              <option value="all">Semua Status</option>
+              <option value="">Semua Status</option>
               <option value="open">Terbuka</option>
               <option value="in_progress">Dalam Proses</option>
               <option value="resolved">Terselesaikan</option>
@@ -189,7 +191,7 @@ const Tickets: React.FC = () => {
               value={filters.priority}
               onChange={handlePriorityFilter}
             >
-              <option value="all">Semua Prioritas</option>
+              <option value="">Semua Prioritas</option>
               <option value="high">Tinggi</option>
               <option value="medium">Sedang</option>
               <option value="low">Rendah</option>
@@ -199,7 +201,7 @@ const Tickets: React.FC = () => {
               value={filters.category}
               onChange={handleCategoryFilter}
             >
-              <option value="all">Semua Kategori</option>
+              <option value="">Semua Kategori</option>
               <option value="connection">Koneksi</option>
               <option value="hardware">Hardware</option>
               <option value="billing">Billing</option>

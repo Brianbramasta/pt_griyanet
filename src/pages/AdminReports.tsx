@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Button } from '../components';
 import type { Customer, Ticket } from '../types';
+import { customerService } from '../services';
+import { ticketService } from '../services';
 
 const AdminReports: React.FC = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -13,13 +15,15 @@ const AdminReports: React.FC = () => {
       setIsLoading(true);
       setError('');
       try {
-        const [cRes, tRes] = await Promise.all([
-          fetch('http://localhost:3001/customers'),
-          fetch('http://localhost:3001/tickets'),
-        ]);
+        // const [cRes, tRes] = await Promise.all([
+        //   fetch('http://localhost:3001/customers'),
+        //   fetch('http://localhost:3001/tickets'),
+        // ]);
         const [cData, tData] = await Promise.all([
-          cRes.json(),
-          tRes.json(),
+          // cRes.json(),
+          // tRes.json(),
+          customerService.getAll(),
+          ticketService.getAll()
         ]);
         setCustomers(cData);
         setTickets(tData);
