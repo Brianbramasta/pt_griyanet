@@ -60,6 +60,7 @@ const AppRoutes: React.FC = () => {
           path="/"
           element={
             <ProtectedRoute>
+              {/* show sidebar header */}
               <Layout />
             </ProtectedRoute>
           }
@@ -114,17 +115,18 @@ const AppRoutes: React.FC = () => {
                <AdminReports />
              </RoleBasedRoute>
            } />
+            <Route
+              path="/users/new"
+              element={
+                <RoleBasedRoute allowedRoles={['admin']}>
+                  <React.Suspense fallback={<LoadingFallback />}>
+                    <UserNew />
+                  </React.Suspense>
+                </RoleBasedRoute>
+              }
+            />
         </Route>
-        <Route
-          path="/users/new"
-          element={
-            <RoleBasedRoute allowedRoles={['admin']}>
-              <React.Suspense fallback={<LoadingFallback />}>
-                <UserNew />
-              </React.Suspense>
-            </RoleBasedRoute>
-          }
-        />
+       
         
         {/* Not found route */}
         <Route path="*" element={<NotFound />} />

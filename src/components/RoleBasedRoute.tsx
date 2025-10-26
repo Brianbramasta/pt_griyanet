@@ -19,11 +19,14 @@ const RoleBasedRoute: React.FC<RoleBasedRouteProps> = ({
 }) => {
   const userRole = useAppSelector(selectUserRole);
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
+
+  // console.log('RoleBasedRoute - userRole:', userRole);
+  // console.log('RoleBasedRoute - isAuthenticated:', isAuthenticated);
   
-  // Jika user belum login, redirect ke login
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
+  // // Jika user belum login, redirect ke login
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/login" replace />;
+  // }
   
   // Jika role user tidak ada dalam daftar role yang diizinkan, redirect
   if (!allowedRoles.includes(userRole as string)) {
