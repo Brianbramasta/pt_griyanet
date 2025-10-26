@@ -40,7 +40,8 @@ const Tickets: React.FC = () => {
         // const response = await fetch(url);
         // const data = await response.json();
         const data = await ticketService.getAll(filters);
-        setTickets(data);
+        const setTicketSort = data.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        setTickets(setTicketSort);
       } catch (error) {
         console.error('Error fetching tickets:', error);
       } finally {
@@ -111,8 +112,7 @@ const Tickets: React.FC = () => {
     },
     {
       header: 'Status',
-      accessor: 'status' as keyof Ticket,
-      cell: (ticket: Ticket) => (
+      accessor: (ticket: Ticket) => (
         <span className={
           `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             ticket.status === 'open' ? 'bg-yellow-100 text-yellow-800' :
@@ -134,8 +134,7 @@ const Tickets: React.FC = () => {
     },
     {
       header: 'Tanggal Dibuat',
-      accessor: 'createdAt' as keyof Ticket,
-      cell: (ticket: Ticket) => <span>{new Date(ticket.createdAt).toLocaleDateString()}</span>
+      accessor: (ticket: Ticket) => <span>{new Date(ticket.createdAt).toLocaleString()}</span>
     },
     {
       header: 'Aksi',

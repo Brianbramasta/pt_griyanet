@@ -83,9 +83,10 @@ Admin:
 │   ├── hooks/          # Custom hooks
 │   ├── pages/          # Halaman aplikasi
 │   ├── services/       # Service API
+│   ├── redux/          # state management
+│   ├── routes/         # routing halaman
 │   ├── styles/         # File CSS
 │   ├── types/          # TypeScript types
-│   ├── utils/          # Fungsi utilitas
 │   ├── App.tsx         # Komponen utama
 │   └── main.tsx        # Entry point
 ├── db.json             # Database JSON Server

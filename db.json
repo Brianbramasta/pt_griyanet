@@ -8,7 +8,7 @@
       "role": "admin",
       "avatar": "https://i.pravatar.cc/150?img=1",
       "createdAt": "2023-01-01T00:00:00.000Z",
-      "lastLogin": "2025-10-26T08:47:04.392Z",
+      "lastLogin": "2025-10-26T10:04:25.199Z",
       "isActive": true,
       "password": "admin123"
     },
@@ -20,7 +20,7 @@
       "role": "cs",
       "avatar": "https://i.pravatar.cc/150?img=2",
       "createdAt": "2023-01-15T00:00:00.000Z",
-      "lastLogin": "2025-10-26T07:49:02.879Z",
+      "lastLogin": "2025-10-26T10:44:53.044Z",
       "isActive": true,
       "password": "cs123"
     },
@@ -32,7 +32,7 @@
       "role": "noc",
       "avatar": "https://i.pravatar.cc/150?img=3",
       "createdAt": "2023-02-01T00:00:00.000Z",
-      "lastLogin": "2025-10-24T00:00:36.734Z",
+      "lastLogin": "2025-10-26T10:45:58.296Z",
       "isActive": true,
       "password": "noc123"
     },
@@ -295,6 +295,66 @@
           "userId": "3",
           "userName": "Network Operations",
           "comment": "oke sedang di kerjakan"
+        }
+      ]
+    },
+    {
+      "id": "d565",
+      "title": "internet error",
+      "description": "internet tidak bisa di gunakan padahal baru pasang kemarin",
+      "customerId": "1",
+      "customerName": "John Doe",
+      "createdBy": "2",
+      "assignedTo": "3",
+      "status": "open",
+      "priority": "high",
+      "category": "connection",
+      "attachments": [],
+      "notes": "mohon untuk langsung dikerjakan, ya!",
+      "createdAt": "2025-10-26T10:27:12.115Z",
+      "updatedAt": "2025-10-26T10:27:12.115Z",
+      "statusHistory": [
+        {
+          "id": "394f0109-a76b-4912-bd90-643dcbb2bf6b",
+          "status": "open",
+          "timestamp": "2025-10-26T10:27:12.115Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "notes": "Tiket dibuat"
+        }
+      ]
+    },
+    {
+      "id": "a4ad",
+      "title": "test notes",
+      "description": "test",
+      "customerId": "1",
+      "customerName": "John Doe",
+      "createdBy": "2",
+      "assignedTo": "3",
+      "status": "in_progress",
+      "priority": "medium",
+      "category": "other",
+      "attachments": [],
+      "notes": "langsung kerjakan",
+      "createdAt": "2025-10-26T10:45:41.832Z",
+      "updatedAt": "2025-10-26T10:46:18.289Z",
+      "statusHistory": [
+        {
+          "id": "65359450-d984-40e4-a398-ef1d3bf22c96",
+          "status": "open",
+          "timestamp": "2025-10-26T10:45:41.832Z",
+          "userId": "2",
+          "userName": "Customer Service",
+          "notes": "langsung kerjakan"
+        },
+        {
+          "id": "a4ad",
+          "status": "in_progress",
+          "timestamp": "2025-10-26T10:46:18.289Z",
+          "userId": "3",
+          "userName": "Network Operations",
+          "notes": "on going"
         }
       ]
     }

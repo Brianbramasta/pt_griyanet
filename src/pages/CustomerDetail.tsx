@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components';
 import type { Customer, Ticket } from '../types';
-import { customerService } from '../services/customerService';
+import { customerService, ticketService } from '../services/index';
 
 const CustomerDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -54,13 +54,22 @@ const CustomerDetail: React.FC = () => {
     }
     
     try {
-      const response = await fetch(`http://localhost:3001/customers/${id}`, {
-        method: 'DELETE',
-      });
+      // const response = await fetch(`http://localhost:3001/customers/${id}`, {
+      //   method: 'DELETE',
+      // });
       
-      if (!response.ok) {
-        throw new Error('Gagal menghapus customer');
+      // if (!response.ok) {
+      //   throw new Error('Gagal menghapus customer');
+      // }
+      const getCustomer = await customerService.getTickets(id!);
+      for (const _ticket of getCustomer) {
+        console.log('Ticket to delete:', _ticket);
+        await ticketService.delete(_ticket.id);
       }
+      console.log('Customer to delete:', getCustomer);
+      await customerService.delete(id!);
+
+      
       
       navigate('/customers');
     } catch (err) {

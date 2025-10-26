@@ -22,7 +22,8 @@ export const customerService = {
       if (filters.city) params['city'] = filters.city;
     }
     
-    return api.get<Customer[]>(ENDPOINT, params);
+    return api.get<Customer[]>(ENDPOINT, params); 
+    // http://localhost:3001/customers?status=active&serviceType=internet
   },
 
   /**

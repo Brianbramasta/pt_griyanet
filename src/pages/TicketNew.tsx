@@ -100,7 +100,7 @@ const TicketNew: React.FC = () => {
             timestamp: now,
             userId: user?.id || 'system',
             userName: user?.name || 'System',
-            notes: 'Tiket dibuat',
+            notes: form.notes? form.notes : 'Tiket dibuat',
           },
         ] as any,
       } as any;

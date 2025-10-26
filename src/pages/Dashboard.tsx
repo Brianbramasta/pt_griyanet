@@ -26,7 +26,7 @@ const Dashboard: React.FC = () => {
         // Fetch recent tickets
         const ticketsResponse = await fetch('http://localhost:3001/tickets?_sort=createdAt&_order=desc&_limit=5');
         const tickets = await ticketsResponse.json();
-        setRecentTickets(tickets);
+        setRecentTickets(tickets.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
 
         // Fetch ticket stats
         const allTicketsResponse = await fetch('http://localhost:3001/tickets');
